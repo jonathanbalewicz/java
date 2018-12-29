@@ -1,0 +1,10 @@
+public double avgGPA(Arraylist classList) {
+  double sum = 0.00;
+  double result;
+  for (int i = 0; i < classList.size(); i++) {
+    sum += classList.get(i);
+  }
+  result = sum/result;
+  return result;
+  
+}

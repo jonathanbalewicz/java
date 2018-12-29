@@ -1,0 +1,60 @@
+import java.io.*;
+
+public class A2QABalewicz7836603 {
+   public static void main(String[] args) {
+      BufferedReader input;
+      String country, eventType, event;
+      Event countryFound;
+      Event eventTypeFound;
+
+      Event[] events = new Event[500]; // events by country
+      int size = 0; // size of the above array
+      
+      Event[] eventsByEventType = new Event[500];
+      int size2 = 0; // size of the above array
+
+
+      try {
+         input = new BufferedReader(new FileReader("a2a.txt"));
+
+         country = input.readLine();
+         while (country != null) {
+            eventType = input.readLine();
+            event = input.readLine();
+               countryFound = findCountry(events, country, size);
+               if (countryFound == null) {
+                  // movie that was not previously listed
+                  System.out.println(country);
+                  System.out.println(eventType);
+                  System.out.println(event);
+                  events[size] = new Event(country, eventType);
+                  size++;
+               } else {
+                  // this movie was already reviewed at least once
+                  countryFound.addMedal();
+               }
+               
+            country = input.readLine();
+         }
+
+         input.close();
+      } catch (IOException ioe) {
+         System.out.println(ioe.getMessage());
+      }
+
+      System.out.println("\nEnd of processing.");
+   }
+}
+
+class Event {
+   private String country;
+   private String eventType;
+   private int medalCount;
+   
+
+   public Event(String country, String eventType) {
+   this.country = country;
+      this.eventType = eventType;
+      this.medalCount = 1;
+   }
+}

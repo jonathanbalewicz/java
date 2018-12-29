@@ -1,0 +1,25 @@
+import java.io.*;
+
+public class Exam3 {
+ public static void main(String[] args) {
+  Sentence[] sentences = new Sentence[1000];
+  int size = 0;
+  
+  System.out.println("\nEnd of processing.");
+ }
+}
+class Sentence {
+ private String text;
+ private int wordCount;
+ private int letterCount;
+
+ public Sentence() {
+  this.text = "";
+  this.wordCount = 0;
+  this.letterCount = 0;
+ }
+ public String toString() {
+  return text;
+ }
+}
+

@@ -1,0 +1,113 @@
+/**
+ * A3QBBalewicz7836603
+ *
+ * COMP 1020 SECTION D01
+ * INSTRUCTOR    Heather Matheson
+ * ASSIGNMENT    Assignment 3, Part B
+ * @author       Jonathan Balewicz, 7836603
+ * @version      October 29, 2018
+ *
+ * PURPOSE: 
+ */
+import java.io.*;
+import java.util.ArrayList;
+
+public class A3QBBalewicz7836603 {
+ public static void main(String[] args) {
+  ArrayList<Product> shoppingList = new ArrayList<Product>();
+  ArrayList<Product> purchaseList = new ArrayList<Product>();
+
+  processFile(shoppingList, purchaseList);
+  
+  System.out.println("\nEnd of processing.");
+ }
+ 
+ public static void processFile(ArrayList<Product> shoppingList, ArrayList<Product> purchaseList) {
+  BufferedReader input;
+  String line;
+  Product item;
+  int x;
+  int y;
+  int sumX = 0;
+  int sumY = 0;
+  
+  try {
+   input = new BufferedReader(new FileReader("a3a.txt"));
+   line = input.readLine();
+   
+   while (line != null) {// loop through lines
+    x = Integer.parseInt(line.split(" ")[0]);
+    y = Integer.parseInt(line.split(" ")[1]);
+    sumX += x;
+    sumY += y;
+    
+    line = input.readLine();
+   }
+   input.close();
+
+  } catch (IOException ioe) {
+   System.out.println(ioe.getMessage());
+  }
+ }
+ 
+ /* Decrement the shopping list quanitity of a product.
+  * Remove the product off the shopping list if there are no
+  * more of this item on the list.
+  * 
+  * Takes the shopping list, the product name,
+  * and the amount of the product.
+  */
+ public static void decrementShopping(ArrayList<Product> list, String product, int amount) {
+   int index = search(list, product);
+   if (index != -1) {
+     list.get(index).add((-1)*amount); // decrement the quantity
+     if (list.get(index).getQuantity() < 1) {
+       list.remove(index); // remove from list
+     }
+   }
+   
+   
+/* Search for a product in an ArrayList and return the
+ * index of the item.
+ * 
+ * Takes the ArrayList and the product you are looking for.
+ */
+ }
+ public static int search(ArrayList<Product> list, String product) {
+  int match = -1;
+for (int i = 0; i < list.size(); i++) {
+  if (product.equals(list.get(i).getName())) {
+    match = i;
+  }
+}
+return match;
+ }
+ 
+ public static void printLists(ArrayList<Product> list) {
+  for (int i = 0; i < list.size(); i++) {
+   System.out.println(list.get(i));
+  }
+ }
+}
+
+class Product {
+ private String name;
+ private int quantity;
+
+ public Product(String name, int quantity) {
+  this.name = name;
+  this.quantity = quantity;
+ }
+ public void add(int amount) {
+   quantity += amount;
+ }
+ public int getQuantity() {
+   return quantity;
+ }
+ public String getName() {
+   return name;
+ }
+ public String toString() {
+  return quantity + " - " + name;
+ }
+}

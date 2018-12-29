@@ -1,0 +1,11 @@
+import java.io.*;
+
+public class A2QBBalewicz7836603 {
+ public static void main(String[] args) {
+  Sentence[] sentences = new Sentence[1000];
+  int size = 0;
+  
+  System.out.println("\nEnd of processing.");
+ }
+}
+
